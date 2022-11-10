@@ -56,3 +56,8 @@ Write a program that prints its input one word per line.
 Write a program to print a histogram of the lengths of words in its input.  It
 is easy to draw the histogram with the bars horizontal; a vertical orientation
 is more challenging.
+
+## Exercise 1.14
+
+Write a program to print a histogram of the frequencies of different characters
+in its input.

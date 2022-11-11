@@ -61,3 +61,8 @@ is more challenging.
 
 Write a program to print a histogram of the frequencies of different characters
 in its input.
+
+## Exercise 1.15
+
+Rewrite the temperature conversion program of Section 1.2 to use a function for
+conversion.

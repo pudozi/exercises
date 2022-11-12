@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-/*  Write a program to print a histogram of the frequencies of different
- *  characters in its input. */
+/*  Exercise 1.14: Write a program to print a histogram of the frequencies of
+ *  different characters in its input. */
 
 #define CHAR_COUNT    26+10 /* the number of characters to count */
 #define MAX_HISTO_LEN 60    /* the maximum histogram bar length to print */

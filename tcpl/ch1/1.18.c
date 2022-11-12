@@ -18,6 +18,7 @@ int main()
          * program to fail to strip the trailing blanks in a single pass as it
          * can remove at most only MAX_SIZE-1 blanks at once */
         if (len == MAX_SIZE-1 && line[MAX_SIZE-2] != '\n') {
+            printf("%s", line);
             continue;
         }
 

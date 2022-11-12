@@ -6,6 +6,7 @@
 #define MAX_SIZE  999+1
 
 int readline(char buf[], int bufsize);
+int stripws(char s[], int len);
 
 int main()
 {
@@ -20,33 +21,41 @@ int main()
             continue;
         }
 
-        /* go backwards from the end of the line and move the newline (if it
-         * exists) and null terminator behind the last non-blank character */
-        int i, newline;
-        if (line[len-1] == '\n') {
-            newline = 1;
-            i = len-2;
-        } else {
-            newline = 0;
-            i = len-1;
-        }
-        while (i >= 0 && (line[i] == ' ' || line[i] == '\t')) {
-            --i;
-        }
-        if (newline) {
-            line[i+1] = '\n';
-            line[i+2] = '\0';
-        } else {
-            line[i+1] = '\0';
-        }
-
-        /* if the line isn't entirely blank, print it */
-        if (line[0] != '\n') {
+        /* strip whitespace and print the line if it's not entirely blank */
+        if (stripws(line, len) > 0 && line[0] != '\n') {
             printf("%s", line);
         }
     }
 
     return 0;
+}
+
+/* stripws: strip trailing whitespace from the end of a string, return new length */
+int stripws(char s[], int len)
+{
+    /* set the index before the final newline or null terminator, remembering which */
+    int i, newline;
+    if (s[len-1] == '\n') {
+        newline = 1;
+        i = len - 2;
+    } else {
+        newline = 0;
+        i = len - 1;
+    }
+
+    /* go backwards, stopping just before the first non-whitespace character */
+    while (i >= 0 && (s[i] == ' ' || s[i] == '\t')) --i;
+    ++i;
+
+    /* move the final newline and null terminator to the new position */
+    if (newline) {
+        s[i++] = '\n';
+        s[i]   = '\0';
+    } else {
+        s[i]   = '\0';
+    }
+
+    return i;
 }
 
 /* readline: read a line into buf, return length */

@@ -62,13 +62,10 @@ int stripws(char s[], int len)
 /* readline: read a line into buf, return length */
 int readline(char buf[], int bufsize)
 {
-    int i, ch;
-    for (i = 0; i < bufsize-1 && (ch = getchar()) != EOF; ++i) {
-        buf[i] = (char)ch;
-        if (ch == '\n') {
-            ++i;
-            break;
-        }
+    int i = 0, ch;
+    while (i < bufsize-1 && (ch = getchar()) != EOF) {
+        buf[i++] = (char)ch;
+        if (ch == '\n') break;
     }
     buf[i] = '\0';
      

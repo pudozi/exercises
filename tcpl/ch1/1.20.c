@@ -13,9 +13,8 @@ int main()
     int tabstop = TAB_WIDTH;
     while ((ch = getchar()) != EOF) {
         if (ch == '\t') {
-            for (int i = 0; i < tabstop; ++i) {
-                putchar(' ');
-            }
+            while (tabstop-- != 0) putchar(' ');
+            tabstop = TAB_WIDTH;
 	} else {
             putchar(ch);
             if (ch == '\n' || --tabstop == 0) {

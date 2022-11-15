@@ -7,58 +7,31 @@
 
 #define TAB_WIDTH 8
 
-void printspace(int n, int ftab);
-
 int main()
 {
     int ch;
     int nspace = 0;
-    int ftab = TAB_WIDTH;
-    int ntab = TAB_WIDTH;
+    int tabstop = TAB_WIDTH;
     while ((ch = getchar()) != EOF) {
         if (ch == ' ') {
-            if (nspace == 0) {
-                ftab = ntab;
-            }
-            ++nspace, --ntab;
+            ++nspace, --tabstop;
         } else if (ch == '\t') {
-            if (nspace == 0) {
-                ftab = ntab;
-            }
-            nspace += ntab;
-            ntab = TAB_WIDTH;
+            nspace += tabstop;
+            tabstop = 0;
         } else {
-            if (nspace != 0) {
-                printspace(nspace, ftab);
-                nspace = 0;
-            }
-            if (ch == '\n') {
-                ntab = TAB_WIDTH;
-            } else {
-                --ntab;
+            if (ch != '\n') --tabstop;
+            else tabstop = TAB_WIDTH;
+            while (nspace > 0) {
+                --nspace;
+                putchar('_');
             }
             putchar(ch);
         }
-        if (ntab == 0) {
-            ntab = TAB_WIDTH;
+        if (tabstop == 0) {
+            if (nspace == 1) putchar(' ');
+            else if (nspace > 1) putchar('\t');
+            nspace = 0;
+            tabstop = TAB_WIDTH;
         }
-    }
-}
-
-/* printspace: print n characters of space using tabs and spaces */
-void printspace(int n, int ftab)
-{
-    if (n >= ftab) {
-        putchar('\t');
-        n -= ftab;
-        ftab = TAB_WIDTH;
-    }
-    while (n >= TAB_WIDTH) {
-        putchar('\t');
-        n -= TAB_WIDTH;
-    }
-    while (n != 0) {
-        putchar(' ');
-        --n;
     }
 }

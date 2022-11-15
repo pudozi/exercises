@@ -21,10 +21,7 @@ int main()
         } else {
             if (ch != '\n') --tabstop;
             else tabstop = TAB_WIDTH;
-            while (nspace > 0) {
-                --nspace;
-                putchar('_');
-            }
+            for (; nspace > 0; --nspace) putchar(' ');
             putchar(ch);
         }
         if (tabstop == 0) {

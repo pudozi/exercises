@@ -7,7 +7,7 @@
 
 #define TAB_WIDTH 8
 
-int main()
+int main(void)
 {
     int ch;
     int tabstop = TAB_WIDTH;

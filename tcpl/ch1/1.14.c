@@ -6,7 +6,7 @@
 #define CHAR_COUNT    26+10 /* the number of characters to count */
 #define MAX_HISTO_LEN 60    /* the maximum histogram bar length to print */
 
-int main()
+int main(void)
 {
     int ch_freq[CHAR_COUNT] = {0};
 

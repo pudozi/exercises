@@ -5,7 +5,7 @@
 #define IN  1 /* inside a word */
 #define OUT 0 /* outside a word */
 
-int main()
+int main(void)
 {
     int ch;
     int state = OUT;

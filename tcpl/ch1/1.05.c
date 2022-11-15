@@ -3,7 +3,7 @@
 /* Exercise 1.5: Modify the tempurature conversion program to print the table
  * in reverse order, that is, from 300 degrees to 0. */
 
-int main()
+int main(void)
 {
     /* print heading */
     printf("fah   cel\n");

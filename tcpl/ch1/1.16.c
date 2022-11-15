@@ -9,7 +9,7 @@
 int readline(char buf[], int bufsize);
 int copystr(char dst[], char src[]);
 
-int main()
+int main(void)
 {
     char lline[MAX_SIZE];
     char cline[MAX_SIZE];

@@ -4,7 +4,7 @@
  * each tab by \t, each backspace by \b and each backslash by \\.  This makes
  * tabs and backspaces visible in an unambiguous way. */
 
-int main()
+int main(void)
 {
     int ch;
 

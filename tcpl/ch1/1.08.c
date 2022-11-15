@@ -2,7 +2,7 @@
 
 /* Exercise 1.8: Write a program to count blanks, tabs, and newlines. */
 
-int main()
+int main(void)
 {
     int ch;
     int bc = 0, tc = 0, lc = 0;

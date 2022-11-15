@@ -3,7 +3,7 @@
 /* Exercise 1.3: Modify the tempurature conversion program to print a heading
  * above the table */
 
-int main()
+int main(void)
 {
     float f, c;
     float min  =   0;

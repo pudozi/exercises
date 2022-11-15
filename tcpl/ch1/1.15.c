@@ -5,7 +5,7 @@
 
 float ftoc(float f);
 
-int main()
+int main(void)
 {
     /* print header */
     printf("fah   cel\n");

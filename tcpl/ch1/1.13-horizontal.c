@@ -7,7 +7,7 @@
 #define MAX_WORD_LEN  50 /* the maximum word length to be counted */
 #define MAX_HISTO_LEN 60 /* the maximum histogram bar length to print */
 
-int main()
+int main(void)
 {
     int wl_freq[MAX_WORD_LEN] = {0};
 

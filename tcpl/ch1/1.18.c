@@ -8,7 +8,7 @@
 int readline(char buf[], int bufsize);
 int stripws(char s[], int len);
 
-int main()
+int main(void)
 {
     char line[MAX_SIZE];
     int len = 0;

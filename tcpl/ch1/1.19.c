@@ -9,7 +9,7 @@ int readline(char buf[], int bufsize);
 void reverse(char s[]);
 int slen(char s[]);
 
-int main()
+int main(void)
 {
     char line[MAX_SIZE];
     int len = 0;

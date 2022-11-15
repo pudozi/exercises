@@ -6,7 +6,7 @@
 #define IN  1 /* inside a string of blanks */
 #define OUT 0 /* outisde a string of blanks */
 
-int main()
+int main(void)
 {
     int ch;
     int state = OUT;

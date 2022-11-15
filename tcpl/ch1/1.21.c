@@ -31,4 +31,7 @@ int main()
             putchar(ch);
         }
     }
+    for (; nspace > 0; --nspace) putchar(' ');
+
+    return 0;
 }

@@ -10,25 +10,25 @@
 int main()
 {
     int ch;
-    int nspace = 0;
     int tabstop = TAB_WIDTH;
+    int nspace = 0;
     while ((ch = getchar()) != EOF) {
         if (ch == ' ') {
-            ++nspace, --tabstop;
+            --tabstop, ++nspace;
+            if (tabstop == 0) {
+                if (nspace == 1) putchar(' ');
+                else putchar('\t');
+                tabstop = TAB_WIDTH, nspace = 0;
+            }
         } else if (ch == '\t') {
-            nspace += tabstop;
-            tabstop = 0;
+            tabstop = TAB_WIDTH, nspace = 0;
+            putchar('\t');
         } else {
-            if (ch != '\n') --tabstop;
-            else tabstop = TAB_WIDTH;
+            if (ch == '\n' || --tabstop == 0) {
+                tabstop = TAB_WIDTH;
+            }
             for (; nspace > 0; --nspace) putchar(' ');
             putchar(ch);
-        }
-        if (tabstop == 0) {
-            if (nspace == 1) putchar(' ');
-            else if (nspace > 1) putchar('\t');
-            nspace = 0;
-            tabstop = TAB_WIDTH;
         }
     }
 }

@@ -3,30 +3,22 @@
 /* Exercise 1.17: Write a program to print all input lines that are longer than
  * 80 characters. */
 
-#define MAX_SIZE  999+1
-#define PRINT_LEN 80
+#define PRINT_LEN 81
+#define BUFSIZE   PRINT_LEN+1
 
 int readline(char buf[], int bufsize);
 
 int main(void)
 {
-    char line[MAX_SIZE];
-    int len = 0;
-
-    while ((len = readline(line, MAX_SIZE)) != 0) {
-        /* if line length exceeds buffer size, consume the rest and
-         * remember only total length */
-        if (len == MAX_SIZE-1 && line[MAX_SIZE-2] != '\n') {
-            int ch;
+    char line[BUFSIZE];
+    int len, ch;
+    while ((len = readline(line, BUFSIZE)) != 0) {
+        if (len == PRINT_LEN && line[PRINT_LEN-1] != '\n') {
+            printf("%s", line);
             while ((ch = getchar()) != EOF) {
-                ++len;
+                putchar(ch);
                 if (ch == '\n') break;
             }
-        }
-
-        /* print the line if its length exceeds PRINT_LEN */
-        if (len > PRINT_LEN) {
-            printf("%d: %s", len, line);
         }
     }
 

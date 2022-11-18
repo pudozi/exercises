@@ -67,9 +67,16 @@ int main(void)
                 tabstop = TAB_WIDTH;
             } else if (ch == '\t') {
                 if (col+tabstop < MAX_COL) {
-                    putchar('\t');
-                    col += tabstop;
-                    tabstop = TAB_WIDTH;
+                    if (tabstop == TAB_WIDTH) {
+                        putchar('\t');
+                        col += tabstop;
+                    } else {
+                        while (tabstop > 0) {
+                            putchar(' ');
+                            ++col, --tabstop;
+                        }
+                        tabstop = TAB_WIDTH;
+                    }
                 } else {
                     while (col < MAX_COL) {
                         putchar(' ');

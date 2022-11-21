@@ -5,6 +5,9 @@
  * comments do not nest. */
 
 void next(int c[]);
+void del_multicomment(int c[]);
+void del_singlecomment(int c[]);
+void echo_quote(int c[]);
 
 int main(void)
 {
@@ -13,45 +16,15 @@ int main(void)
     next(c);
     while (c[0] != EOF) {
         if (c[0] == '/') {
-            /* multiline comment */
             if (c[1] == '*') {
-                do {
-                    next(c);
-                } while ((c[0] != '*' || c[1] != '/') && c[0] != EOF);
-                putchar(' ');
-                next(c);
-            /* singleline comment */
+                del_multicomment(c);
             } else if (c[1] == '/') {
-                do {
-                    next(c);
-                } while (c[0] != '\n' && c[0] != EOF);
-                putchar(' ');
-                putchar('\n');
+                del_singlecomment(c);
             } else {
                 putchar(c[0]);
             }
-        /* string */
-        } else if (c[0] == '\"') {
-                do {
-                    putchar(c[0]);
-                    next(c);
-                    if (c[0] == '\\') {
-                        putchar(c[0]);
-                        next(c);
-                    }
-                } while (c[0] != '\"' && c[0] != EOF);
-                putchar(c[0]);
-        /* character constant */
-        } else if (c[0] == '\'') {
-                do {
-                    putchar(c[0]);
-                    next(c);
-                    if (c[0] == '\\') {
-                        putchar(c[0]);
-                        next(c);
-                    }
-                } while (c[0] != '\'' && c[0] != EOF);
-                putchar(c[0]);
+        } else if (c[0] == '\"' || c[0] == '\'') {
+            echo_quote(c);
         } else {
             putchar(c[0]);
         }
@@ -66,3 +39,38 @@ void next(int c[])
     c[0] = c[1];
     c[1] = getchar();
 }
+
+void del_multicomment(int c[])
+{
+    next(c);
+    do {
+        next(c);
+    } while (c[0] != '*' || c[1] != '/');
+    putchar(' ');
+    next(c);
+}
+
+void del_singlecomment(int c[])
+{
+    do {
+        next(c);
+    } while (c[0] != '\n' && c[0] != EOF);
+    putchar('\n');
+}
+
+void echo_quote(int c[])
+{
+    int term = c[0];
+    do {
+        putchar(c[0]);
+        next(c);
+        if (c[0] == '\\') {
+            putchar(c[0]);
+            putchar(c[1]);
+            next(c);
+            next(c);
+        }
+    } while (c[0] != term && c[0] != EOF);
+    if (c[0] != EOF) putchar(c[0]);
+}
+

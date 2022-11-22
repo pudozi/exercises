@@ -5,7 +5,7 @@
  * comments do not nest. */
 
 int next(void);
-int peak(void);
+int peek(void);
 void del_multicomment(void);
 void del_singlecomment(void);
 void echo_quote(int quote);
@@ -15,9 +15,9 @@ int main(void)
     int c = next();
     while ((c = next()) != EOF) {
         if (c == '/') {
-            if (peak() == '*') {
+            if (peek() == '*') {
                 del_multicomment();
-            } else if (peak() == '/') {
+            } else if (peek() == '/') {
                 del_singlecomment();
             } else {
                 putchar(c);
@@ -41,7 +41,7 @@ int next(void)
     return b;
 }
 
-int peak(void)
+int peek(void)
 {
     return c;
 }
@@ -49,7 +49,7 @@ int peak(void)
 void del_multicomment(void)
 {
     next();
-    while (next() != '*' || peak() != '/');
+    while (next() != '*' || peek() != '/');
     putchar(' ');
     next();
 }

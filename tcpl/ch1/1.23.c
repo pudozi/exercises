@@ -13,8 +13,7 @@ int main(void)
 {
     int c[3] = {0};
     next(c);
-    next(c);
-    while (c[0] != EOF) {
+    while (next(c), c[0] != EOF) {
         if (c[0] == '/') {
             if (c[1] == '*') {
                 del_multicomment(c);
@@ -28,7 +27,6 @@ int main(void)
         } else {
             putchar(c[0]);
         }
-        next(c);
     }
 
     return 0;
@@ -43,34 +41,27 @@ void next(int c[])
 void del_multicomment(int c[])
 {
     next(c);
-    do {
-        next(c);
-    } while (c[0] != '*' || c[1] != '/');
+    while (next(c), c[0] != '*' || c[1] != '/');
     putchar(' ');
     next(c);
 }
 
 void del_singlecomment(int c[])
 {
-    do {
-        next(c);
-    } while (c[0] != '\n' && c[0] != EOF);
+    while (next(c), c[0] != '\n' && c[0] != EOF);
     putchar('\n');
 }
 
 void echo_quote(int c[])
 {
     int term = c[0];
-    do {
+    putchar(term);
+    while (next(c), c[0] != term && c[0] != EOF) {
         putchar(c[0]);
-        next(c);
         if (c[0] == '\\') {
+            next(c);
             putchar(c[0]);
-            putchar(c[1]);
-            next(c);
-            next(c);
         }
-    } while (c[0] != term && c[0] != EOF);
-    if (c[0] != EOF) putchar(c[0]);
+    }
+    if (c[0] != EOF) putchar(term);
 }
-

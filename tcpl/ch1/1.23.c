@@ -4,64 +4,73 @@
  * Don't forget to handle quoted strings and character constants properly.  C
  * comments do not nest. */
 
-void next(int c[]);
-void del_multicomment(int c[]);
-void del_singlecomment(int c[]);
-void echo_quote(int c[]);
+int next(void);
+int peak(void);
+void del_multicomment(void);
+void del_singlecomment(void);
+void echo_quote(int quote);
 
 int main(void)
 {
-    int c[3] = {0};
-    next(c);
-    while (next(c), c[0] != EOF) {
-        if (c[0] == '/') {
-            if (c[1] == '*') {
-                del_multicomment(c);
-            } else if (c[1] == '/') {
-                del_singlecomment(c);
+    int c = next();
+    while ((c = next()) != EOF) {
+        if (c == '/') {
+            if (peak() == '*') {
+                del_multicomment();
+            } else if (peak() == '/') {
+                del_singlecomment();
             } else {
-                putchar(c[0]);
+                putchar(c);
             }
-        } else if (c[0] == '\"' || c[0] == '\'') {
+        } else if (c == '\"' || c == '\'') {
             echo_quote(c);
         } else {
-            putchar(c[0]);
+            putchar(c);
         }
     }
 
     return 0;
 }
 
-void next(int c[])
+int c = EOF;
+
+int next(void)
 {
-    c[0] = c[1];
-    c[1] = getchar();
+    int b = c;
+    c = getchar();
+    return b;
 }
 
-void del_multicomment(int c[])
+int peak(void)
 {
-    next(c);
-    while (next(c), c[0] != '*' || c[1] != '/');
+    return c;
+}
+
+void del_multicomment(void)
+{
+    next();
+    while (next() != '*' || peak() != '/');
     putchar(' ');
-    next(c);
+    next();
 }
 
-void del_singlecomment(int c[])
+void del_singlecomment(void)
 {
-    while (next(c), c[0] != '\n' && c[0] != EOF);
+    int c;
+    while (c = next(), c != '\n' && c != EOF);
     putchar('\n');
 }
 
-void echo_quote(int c[])
+void echo_quote(int quote)
 {
-    int term = c[0];
-    putchar(term);
-    while (next(c), c[0] != term && c[0] != EOF) {
-        putchar(c[0]);
-        if (c[0] == '\\') {
-            next(c);
-            putchar(c[0]);
+    int c;
+    putchar(quote);
+    while (c = next(), c != quote && c != EOF) {
+        putchar(c);
+        if (c == '\\') {
+            putchar(next());
         }
     }
-    if (c[0] != EOF) putchar(term);
+    if (c != EOF) putchar(quote);
 }
+

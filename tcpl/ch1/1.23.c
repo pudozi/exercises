@@ -6,8 +6,8 @@
 
 int next(void);
 int peek(void);
-void del_multicomment(void);
-void del_singlecomment(void);
+void delete_blockcomment(void);
+void delete_linecomment(void);
 void echo_quote(int quote);
 
 int main(void)
@@ -16,9 +16,9 @@ int main(void)
     while ((c = next()) != EOF) {
         if (c == '/') {
             if (peek() == '*') {
-                del_multicomment();
+                delete_blockcomment();
             } else if (peek() == '/') {
-                del_singlecomment();
+                delete_linecomment();
             } else {
                 putchar(c);
             }
@@ -46,7 +46,7 @@ int peek(void)
     return c;
 }
 
-void del_multicomment(void)
+void delete_blockcomment(void)
 {
     next();
     while (next() != '*' || peek() != '/');
@@ -54,7 +54,7 @@ void del_multicomment(void)
     next();
 }
 
-void del_singlecomment(void)
+void delete_linecomment(void)
 {
     int c;
     while (c = next(), c != '\n' && c != EOF);

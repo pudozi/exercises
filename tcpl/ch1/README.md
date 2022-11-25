@@ -110,3 +110,9 @@ are no blanks or tabs before the specified column.
 
 Write a program to remove all comments from a C program.  Don't forget to handle
 quoted strings and character constants properly.  C comments do not nest.
+
+## Exercise 1.24
+
+Write a program to check a C program for rudimentary syntax errors like
+unbalanced parentheses, brackets, and braces.  Don't forget about quotes, both
+single and double, escape sequences, and comments.

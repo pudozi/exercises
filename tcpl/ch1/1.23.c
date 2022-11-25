@@ -49,7 +49,7 @@ int peek(void)
 void delete_blockcomment(void)
 {
     next();
-    while (next() != '*' || peek() != '/');
+    while ((next() != '*' || peek() != '/') && peek() != EOF);
     putchar(' ');
     next();
 }

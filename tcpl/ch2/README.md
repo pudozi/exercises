@@ -1,4 +1,4 @@
-# The C Programming Language Chapter 1, Exercises & Solutions
+# The C Programming Language Chapter 2, Exercises & Solutions
 
 ## Exercise 2.1
 

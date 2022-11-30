@@ -1,6 +1,4 @@
 #include <stdio.h>
-#include <limits.h>
-#include <float.h>
 
 /* Exercise 2.1: Write a program to determine the ranges of char, short, int,
  * and long variables, both signed and unsigned, by printing appropriate values

@@ -16,3 +16,8 @@ Write a loop equivalent to the for loop above without using && or ||.
 Write the function htoi(s), which converts a string of hexadecimal digits
 (including an optional 0x or 0X) into its equivalent integer value.  The
 allowable digits are 0 through 9, a through f, and A through F.
+
+## Exercise 2.4
+
+Write an alternate version of squeeze(s1,s2) that deletes each character in
+s1 that matches any character in the string s2.
